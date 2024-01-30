@@ -4,8 +4,13 @@
 @{
 }
 
+
+
+
 <form method="post" enctype="multipart/form-data">
-    
+ <header>
+       <link  rel="stylesheet" href="~/css/site.css"/>
+</header>   
     <div class="row mb-sm-3">
         <div class="col-sm-3">
             <label>Name :</label>
@@ -36,13 +41,15 @@
     <div>
         <label for="Gender">Gender</label>
     </div>
-    <div>
+        <div class="gender-option">
+           
         <input type="radio" id="male" name="Gender" value="Male" @(Model.user.UserGender  == Gender.Male)/>
         <label for="male">Male</label>
     </div>
-    <div>
+    <div class="gender-option">
         <input type="radio" id="female" name="Gender" value="Female" @(Model.user.UserGender == Gender.Female) />
         <label for="female">Female</label>
+        
     </div>
     <div class="mt-5">
     <div class="row mb-md-3">
@@ -61,6 +68,8 @@
         </div>
         </div>
     </div>
+    <fieldset>
+        <legend>Address</legend>
     <div class="mt-5">
     <div class="row mb-md-3">
         <div class="col-md-3">
@@ -103,6 +112,7 @@
         </div>
     </div>
     </div>
+    </fieldset>
     <div class="mt-5">
     <div class="row mb-md-3">
         <div class="col-md-3 text-center">

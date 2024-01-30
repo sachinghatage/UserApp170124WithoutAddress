@@ -38,3 +38,16 @@ body {
     font-style: italic;
     color: red;
 }
+
+<style >
+.gender-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+.gender-option label {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+</style >
