@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QbYBdLG3IfSOHqySQYbNMY6pxeT9FPb5ea08sWjwZkkPuutxt86kTYNTGHMTaeE41BsWQbZ7Fc13TfGsNl874Q==",
+  "dgSpecHash": "f3LgMq2XV7IxILT9k7gc8VmKXXi+7fWnJYTQSDpr5vQ5bxy5mq1/qJfThRaXTv1qPgQYgkmBLm70ODoCePUhqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\IBS 4\\Desktop\\git\\UserApp170124\\UserApplication\\UserApplication\\UserApplication.csproj",
+  "projectFilePath": "C:\\Users\\IBS 4\\Desktop\\git\\UserApp170124WithoutAddress\\UserApplication\\UserApplication\\UserApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IBS 4\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\IBS 4\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

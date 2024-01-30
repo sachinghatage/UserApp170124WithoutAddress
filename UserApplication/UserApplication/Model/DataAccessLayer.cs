@@ -10,7 +10,7 @@ namespace UserApplication.Model
             using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DBCS").ToString()))
             {
                 connection.Open();
-                string query = "INSERT INTO users (Name, Email, Phone, FileContent,Gender) VALUES (@Name, @Email, @Phone, CONVERT(VARBINARY(MAX), @FileContent),@Gender);";
+                string query = "INSERT INTO users (Name, Email, Phone, FileContent,Gender,City,State,Country,Street,PostalCode) VALUES (@Name, @Email, @Phone, CONVERT(VARBINARY(MAX), @FileContent),@Gender,@City,@State,@Country,@Street,@PostalCode);";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -19,6 +19,11 @@ namespace UserApplication.Model
                     command.Parameters.AddWithValue("@Phone", user.Phone);
                     command.Parameters.AddWithValue("@FileContent", user.FileContent); // Assuming user.FileContent is a byte array
                     command.Parameters.AddWithValue("@Gender", user.UserGender.ToString());//by default numbers are stored in db for enum so tostring() is used
+                    command.Parameters.AddWithValue("@City",user.City);
+                    command.Parameters.AddWithValue("@State", user.State);
+                    command.Parameters.AddWithValue("@Country", user.Country);
+                    command.Parameters.AddWithValue("@Street", user.Street);
+                    command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
 
 
                     command.ExecuteNonQuery();
@@ -54,6 +59,8 @@ namespace UserApplication.Model
                                 user.UserGender = enumgender;
                             }
 
+                            user.Country =Convert.ToString( reader["Country"]);
+
 
                             users.Add(user);
                         }
@@ -81,12 +88,18 @@ namespace UserApplication.Model
             using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DBCS")))
             {
                 connection.Open();
-                string query = "UPDATE users SET Name=@Name, Email=@Email, Phone=@Phone WHERE Id=@Id";
+                string query = "UPDATE users SET Name=@Name, Email=@Email, Phone=@Phone,City=@City,State=@State,Country=@Country,Street=@Street,PostalCode=@PostalCode WHERE Id=@Id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Email", user.Email);
                 command.Parameters.AddWithValue("@Phone", user.Phone);
                 command.Parameters.AddWithValue("@Id", id); // Use the parameter 'id' here
+                command.Parameters.AddWithValue("@City",user.City);
+                command.Parameters.AddWithValue("@State", user.State);
+                command.Parameters.AddWithValue("@Country", user.Country);
+                command.Parameters.AddWithValue("@Street", user.Street);
+                command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
+
 
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -94,41 +107,7 @@ namespace UserApplication.Model
         }
 
 
-        /*  public void UpdateUser(Users user, Address address, IConfiguration configuration)
-          {
-              using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DBCS").ToString()))
-              {
-                  connection.Open();
-
-                  // Update the users table
-                  string updateUserQuery = "UPDATE users SET Name=@Name, Email=@Email, Phone=@Phone, Gender=@Gender WHERE Id=@UserId";
-                  using (SqlCommand updateUserCommand = new SqlCommand(updateUserQuery, connection))
-                  {
-                      updateUserCommand.Parameters.AddWithValue("@UserId", user.Id);
-                      updateUserCommand.Parameters.AddWithValue("@Name", user.Name);
-                      updateUserCommand.Parameters.AddWithValue("@Email", user.Email);
-                      updateUserCommand.Parameters.AddWithValue("@Phone", user.Phone);
-                      updateUserCommand.Parameters.AddWithValue("@Gender", user.UserGender.ToString());
-
-                      int userId = Convert.ToInt32(updateUserCommand.ExecuteScalar());
-
-                      string updateAddressQuery = "UPDATE address SET Street=@Street, City=@City, State=@State, Zipcode=@Zipcode WHERE UserId=@UserId";
-                      using (SqlCommand updateAddressCommand = new SqlCommand(updateAddressQuery, connection))
-                      {
-                          updateAddressCommand.Parameters.AddWithValue("@UserId", userId);
-                          updateAddressCommand.Parameters.AddWithValue("@Street", address.Street);
-                          updateAddressCommand.Parameters.AddWithValue("@City", address.City);
-                          updateAddressCommand.Parameters.AddWithValue("@State", address.State);
-                          updateAddressCommand.Parameters.AddWithValue("@Zipcode", address.ZipCode);
-
-                          updateAddressCommand.ExecuteNonQuery();
-                      }
-                  }
-
-
-
-              }
-          }*/
+        
 
 
 
@@ -149,6 +128,17 @@ namespace UserApplication.Model
                             user.Name = Convert.ToString(reader["Name"]);
                             user.Email = Convert.ToString(reader["Email"]);
                             user.Phone = Convert.ToInt32(reader["Phone"]);
+                            string userGender =Convert.ToString( reader["Gender"]);
+                            if(Enum.TryParse(userGender,out Gender gender))
+                            {
+                                user.UserGender= gender;
+                            }
+                            user.City =Convert.ToString( reader["City"]);
+                            user.State = Convert.ToString(reader["State"]);
+                            user.Country = Convert.ToString(reader["Country"]);
+                            user.Street = Convert.ToString(reader["Street"]);
+                            user.PostalCode = Convert.ToString(reader["PostalCode"]);
+
 
                         }
                     }

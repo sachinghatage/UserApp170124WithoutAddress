@@ -34,16 +34,6 @@
         </div>
     </div>
 
-
-    @* <div class="row mb-md-3">
-    <div class="col-md-3">
-    <label>File:</label>
-    </div>
-    <div class="col-md-3">
-    <input type="file" name="FileContent" value="@Model.user.FileContent" class="form-control" />
-    </div>
-    </div> *@
-
     <div>
         <label for="Gender">Gender</label>
     </div>
@@ -54,6 +44,49 @@
     <div>
         <input type="radio" id="female" name="Gender" value="Female" @(Model.user.UserGender == Gender.Female) />
         <label for="female">Female</label>
+    </div>
+    
+    <div class="mt-5">
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label>City :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="City" value="@Model.user.City" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label>State :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="State" value="@Model.user.State" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label>Country :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="Country" value="@Model.user.Country" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label>Street :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="Street" value="@Model.user.Street" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label>Postal Code :</label>
+            </div>
+            <div class="col-md-3">
+                <input type="number" name="PostalCode" value="@Model.user.PostalCode" class="form-control" />
+            </div>
+        </div>
     </div>
   
     <div class="mt-5">

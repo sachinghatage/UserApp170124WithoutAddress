@@ -50,11 +50,16 @@ namespace UserApplication.Pages.User
                     user.FileContent = memoryStream.ToArray();
                 }
 
-              
-            
+                user.City = Request.Form["City"];
+                user.State = Request.Form["State"];
+                user.Country = Request.Form["Country"];
+                user.Street = Request.Form["Street"];
+                user.PostalCode = Request.Form["PostalCode"];
 
 
 
+
+                //calling save method from data access layer
                 DataAccessLayer dal = new DataAccessLayer();
                 dal.Saveuser(user, configuration);
 

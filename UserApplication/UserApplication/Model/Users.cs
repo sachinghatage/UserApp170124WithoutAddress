@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace UserApplication.Model
 {
@@ -15,19 +16,16 @@ namespace UserApplication.Model
 
         public Gender UserGender { get; set; } = Gender.Unknown;
 
-      /*  public Address UserAddress { get; set; }*/
-
-    }
-
-    /*public class Address
-    {
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string ZipCode { get; set; }
-        public string State { get; set; }
+        public string City {  get; set; }
+        public string State {  get; set; }
         public string Country { get; set; }
+        public string Street {  get; set; }
+        public string PostalCode {  get; set; }
+
+      
     }
-*/
+
+   
     public enum Gender
     {
         Male,Female,Unknown

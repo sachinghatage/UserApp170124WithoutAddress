@@ -21,7 +21,7 @@ namespace UserApplication.Pages.User
         }
 
         public void OnPost(int id) {
-            Console.WriteLine($"Received Id: {id}");
+            //Console.WriteLine($"Received Id: {id}");
             user.Name = Request.Form["name"];
             user.Email = Request.Form["Email"];
             user.Phone =Convert.ToInt32( Request.Form["Phone"]);
@@ -31,7 +31,11 @@ namespace UserApplication.Pages.User
                 user.UserGender = genderEnum;
             }
 
-
+            user.City = Request.Form["City"];
+            user.State = Request.Form["State"];
+            user.Country = Request.Form["Country"];
+            user.Street = Request.Form["Street"];
+            user.PostalCode = Request.Form["PostalCode"];
 
 
 
