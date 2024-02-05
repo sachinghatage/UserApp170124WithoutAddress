@@ -42,24 +42,26 @@
     </div>
     
 
-
-    <div>
+    <div class="row mb-md-3"></div>
+    <div class="col-md-3">
         <label for="Gender">Gender</label>
     </div>
-        <div class="gender-option">
+    <div class="col-md-9 d-flex flex-row">
+        <div class="gender-option  mr-3">
            
         <input type="radio" id="male" name="User.UserGender" value="Male" asp-for="User.UserGender" />
-        <label for="male">Male</label>
+            <label for="male" class="ml-1">Male</label>
     </div>
     <div class="gender-option">
         <input type="radio" id="female" name="User.UserGender" value="Female" asp-for="User.UserGender" />
-        <label for="female">Female</label>
+            <label for="female" class="ml-1">Female</label>
        
+    </div>
     </div>
     <div>
         <span asp-validation-for="User.UserGender" class="text-danger"></span>
     </div>
-   
+   <div class="mt-3">
     <fieldset>
         <legend>Address</legend>
     <div class="mt-5">
@@ -110,10 +112,15 @@
     </div>
     </div>
     </fieldset>
+    </div>
     <div class="mt-5">
     <div class="row mb-md-3">
         <div class="col-md-3 text-center">
-          <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z" />
+                    </svg> Save
+                </button>
         </div>
     </div>
     </div>
