@@ -1,38 +1,43 @@
 ﻿@page
 @model UserApplication.Pages.User.IndexModel
-@using UserApplication.Model;
+@using UserApplication.Model
 @{
 }
 
 
 
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" >
+  
+    
  <header>
        <link  rel="stylesheet" href="~/css/site.css"/>
 </header>   
     <div class="row mb-sm-3">
         <div class="col-sm-3">
-            <label>Name :</label>
+            <label asp-for="User.Name"></label>
         </div>
         <div class="col-sm-3">
-            <input type="text" name="Name" value="@Model.user.Name" class="form-control"/>
+            <input type="text" asp-for="User.Name" class="form-control"/>
+            <span asp-validation-for="User.Name" class="text-danger"></span>
        </div>
     </div>
     <div class="row mb-md-3">
         <div class="col-md-3">
-            <label>Email :</label>
+            <label asp-for="User.Email"></label>
         </div>
         <div class="col-md-3">
-            <input type="email" name="Email" value="@Model.user.Email"  class="form-control"/>
+            <input type="email" asp-for="User.Email"  class="form-control"/>
+            <span asp-validation-for="User.Email" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-md-3">
         <div class="col-md-3">
-        <label>Phone :</label>
+        <label asp-for="User.Phone"></label>
         </div>
         <div class="col-md-3">
-            <input type="number" name="Phone" value="@Model.user.Phone" class="form-control"/>
+            <input type="number" asp-for="User.Phone" class="form-control"/>
+            <span asp-validation-for="User.Phone" class="text-danger"></span>
         </div>
     </div>
     
@@ -43,31 +48,18 @@
     </div>
         <div class="gender-option">
            
-        <input type="radio" id="male" name="Gender" value="Male" @(Model.user.UserGender  == Gender.Male)/>
+        <input type="radio" id="male" name="User.UserGender" value="Male" asp-for="User.UserGender" />
         <label for="male">Male</label>
     </div>
     <div class="gender-option">
-        <input type="radio" id="female" name="Gender" value="Female" @(Model.user.UserGender == Gender.Female) />
+        <input type="radio" id="female" name="User.UserGender" value="Female" asp-for="User.UserGender" />
         <label for="female">Female</label>
-        
+       
     </div>
-    <div class="mt-5">
-    <div class="row mb-md-3">
-        <div class="col-md-3">
-            <label>File:</label>
-        </div>
-        <div class="col-md-3">
-            @if (Model.user.FileContent != null && Model.user.FileContent.Length > 0)
-            {
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.user.FileContent)" alt="File Preview" />
-            }
-            else
-            {
-                <input type="file" name="FileContent" class="form-control" />
-            }
-        </div>
-        </div>
+    <div>
+        <span asp-validation-for="User.UserGender" class="text-danger"></span>
     </div>
+   
     <fieldset>
         <legend>Address</legend>
     <div class="mt-5">
@@ -76,7 +68,8 @@
             <label>City :</label>
         </div>
         <div class="col-md-3">
-            <input type="text" name="City" value="@Model.user.City" class="form-control" />
+                    <input type="text" asp-for="User.City" class="form-control" />
+                    <span asp-validation-for="User.City" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-md-3">
@@ -84,7 +77,8 @@
             <label>State :</label>
         </div>
         <div class="col-md-3">
-            <input type="text" name="State" value="@Model.user.State" class="form-control" />
+            <input type="text" asp-for="User.State" class="form-control" />
+                    <span asp-validation-for="User.State" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-md-3">
@@ -92,7 +86,8 @@
             <label>Country :</label>
         </div>
         <div class="col-md-3">
-            <input type="text" name="Country" value="@Model.user.Country" class="form-control" />
+            <input type="text" asp-for="User.Country" class="form-control" />
+                    <span asp-validation-for="User.Country" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-md-3">
@@ -100,7 +95,8 @@
             <label>Street :</label>
         </div>
         <div class="col-md-3">
-            <input type="text" name="Street" value="@Model.user.Street" class="form-control" />
+            <input type="text" asp-for="User.Street" class="form-control" />
+                    <span asp-validation-for="User.Street" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-md-3">
@@ -108,7 +104,8 @@
             <label>Postal Code :</label>
         </div>
         <div class="col-md-3">
-            <input type="number" name="PostalCode" value="@Model.user.PostalCode" class="form-control" />
+            <input type="number" asp-for="User.PostalCode" class="form-control" />
+                    <span asp-validation-for="User.PostalCode" class="text-danger"></span>
         </div>
     </div>
     </div>

@@ -4,87 +4,91 @@
 @{
 }
 
-<form method="post" asp-page-handler="UpdateUser">
+<form method="post" >
 
-    <input type="hidden" name="Id" value="@Model.user.Id" />
+    <input type="hidden" name="Id" value="@Model.User.Id" />
 
 
     <div class="row mb-sm-3">
         <div class="col-sm-3">
-            <label>Name :</label>
+            <label asp-for="User.Name"></label>
         </div>
         <div class="col-sm-3">
-            <input type="text" name="Name" value="@Model.user.Name" class="form-control" />
+            <input type="text" asp-for="User.Name" class="form-control" />
         </div>
     </div>
     <div class="row mb-md-3">
         <div class="col-md-3">
-            <label>Email :</label>
+            <label asp-for="User.Email"></label>
         </div>
         <div class="col-md-3">
-            <input type="email" name="Email" value="@Model.user.Email" class="form-control" />
+            <input type="email" asp-for="User.Email" class="form-control" />
         </div>
     </div>
     <div class="row mb-md-3">
         <div class="col-md-3">
-            <label>Phone :</label>
+            <label asp-for="User.Phone"></label>
         </div>
         <div class="col-md-3">
-            <input type="number" name="Phone" value="@Model.user.Phone" class="form-control" />
+            <input type="number" asp-for="User.Phone" class="form-control" />
         </div>
     </div>
 
     <div>
         <label for="Gender">Gender</label>
     </div>
-    <div>
-        <input type="radio" id="male" name="Gender" value="Male" @(Model.user.UserGender == Gender.Male) />
+    <div class="gender-option">
+
+        <input type="radio" id="male" name="User.UserGender" value="Male" asp-for="User.UserGender" />
         <label for="male">Male</label>
     </div>
-    <div>
-        <input type="radio" id="female" name="Gender" value="Female" @(Model.user.UserGender == Gender.Female) />
+    <div class="gender-option">
+        <input type="radio" id="female" name="User.UserGender" value="Female" asp-for="User.UserGender" />
         <label for="female">Female</label>
+
     </div>
-    
+    <div>
+        <span asp-validation-for="User.UserGender" class="text-danger"></span>
+    </div>
     <div class="mt-5">
         <div class="row mb-md-3">
             <div class="col-md-3">
-                <label>City :</label>
+                <label asp-for="User.City"></label>
             </div>
             <div class="col-md-3">
-                <input type="text" name="City" value="@Model.user.City" class="form-control" />
-            </div>
-        </div>
-        <div class="row mb-md-3">
-            <div class="col-md-3">
-                <label>State :</label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="State" value="@Model.user.State" class="form-control" />
+                <input type="text" asp-for="User.City" class="form-control" />
             </div>
         </div>
         <div class="row mb-md-3">
             <div class="col-md-3">
-                <label>Country :</label>
+                <label asp-for="User.State"></label>
             </div>
             <div class="col-md-3">
-                <input type="text" name="Country" value="@Model.user.Country" class="form-control" />
-            </div>
-        </div>
-        <div class="row mb-md-3">
-            <div class="col-md-3">
-                <label>Street :</label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="Street" value="@Model.user.Street" class="form-control" />
+                <input type="text"   asp-for="User.State"  class="form-control" />
             </div>
         </div>
         <div class="row mb-md-3">
             <div class="col-md-3">
-                <label>Postal Code :</label>
+                <label asp-for="User.Country"></label>
             </div>
             <div class="col-md-3">
-                <input type="number" name="PostalCode" value="@Model.user.PostalCode" class="form-control" />
+                <input type="text" asp-for="User.Country" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label asp-for="User.Street"></label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" asp-for="User.Street" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-md-3">
+            <div class="col-md-3">
+                <label asp-for="User.PostalCode"></label>
+            </div>
+            <div class="col-md-3">
+                <input type="number" asp-for="User.PostalCode" class="form-control" />
             </div>
         </div>
     </div>

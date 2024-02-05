@@ -10,14 +10,14 @@ namespace UserApplication.Model
             using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DBCS").ToString()))
             {
                 connection.Open();
-                string query = "INSERT INTO users (Name, Email, Phone, FileContent,Gender,City,State,Country,Street,PostalCode) VALUES (@Name, @Email, @Phone, CONVERT(VARBINARY(MAX), @FileContent),@Gender,@City,@State,@Country,@Street,@PostalCode);";
+                string query = "INSERT INTO users (Name, Email, Phone,Gender,City,State,Country,Street,PostalCode) VALUES (@Name, @Email, @Phone,@Gender,@City,@State,@Country,@Street,@PostalCode);";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Name", user.Name);
                     command.Parameters.AddWithValue("@Email", user.Email);
                     command.Parameters.AddWithValue("@Phone", user.Phone);
-                    command.Parameters.AddWithValue("@FileContent", user.FileContent); // Assuming user.FileContent is a byte array
+                   
                     command.Parameters.AddWithValue("@Gender", user.UserGender.ToString());//by default numbers are stored in db for enum so tostring() is used
                     command.Parameters.AddWithValue("@City",user.City);
                     command.Parameters.AddWithValue("@State", user.State);
@@ -88,7 +88,7 @@ namespace UserApplication.Model
             using (SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DBCS")))
             {
                 connection.Open();
-                string query = "UPDATE users SET Name=@Name, Email=@Email, Phone=@Phone,City=@City,State=@State,Country=@Country,Street=@Street,PostalCode=@PostalCode WHERE Id=@Id";
+                string query = "UPDATE users SET Name=@Name, Email=@Email, Phone=@Phone,City=@City,State=@State,Country=@Country,Street=@Street,PostalCode=@PostalCode,Gender=@Gender WHERE Id=@Id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Email", user.Email);
@@ -99,6 +99,7 @@ namespace UserApplication.Model
                 command.Parameters.AddWithValue("@Country", user.Country);
                 command.Parameters.AddWithValue("@Street", user.Street);
                 command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
+                command.Parameters.AddWithValue("@Gender",user.UserGender.ToString());
 
 
                 command.ExecuteNonQuery();

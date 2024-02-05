@@ -9,6 +9,8 @@ namespace UserApplication.Pages.User
     {
         private readonly IConfiguration configuration;
         private readonly ILogger<IndexModel> logger;
+        [BindProperty]
+        public Users User { get; set; } = new Users();
 
         public IndexModel(IConfiguration configuration, ILogger<IndexModel> logger)
         {
@@ -16,63 +18,120 @@ namespace UserApplication.Pages.User
             this.logger = logger;
         }
 
-
+/*
         [BindProperty]   //instead of using this property we can create only object,but to simplify we have added
-        public Users user { get; set; } = new Users();
+        public Users user { get; set; } = new Users();*/
 
         
 
         public void OnGet()
         {
         }
+// manually retrieving values using request.form
+         /*public void OnPost()             //return type can be IActionresult but here void can be used,both will redirect default to same page
+         {
+             //for validation,if data not provided returns the same page
+             if(!ModelState.IsValid)
+             {
+                 return;
+             }
 
-        public void OnPost()             //return type can be IActionresult but here void can be used,both will redirect default to same page
+             try
+             {
+
+                 User.Name = Request.Form["Name"];
+                 User.Email = Request.Form["Email"];
+                 User.Phone = Convert.ToInt32(Request.Form["Phone"]);
+                 string userGender = Request.Form["Gender"];
+                 if (Enum.TryParse(userGender, out Gender genderEnum))
+                 {
+                     User.UserGender = genderEnum;
+                 }
+ 
+                 User.City = Request.Form["City"];
+                 User.State = Request.Form["State"];
+                 User.Country = Request.Form["Country"];
+                 User.Street = Request.Form["Street"];
+                 User.PostalCode = Request.Form["PostalCode"];
+
+
+
+
+
+                 //calling save method from data access layer
+                 DataAccessLayer dal = new DataAccessLayer();
+                 dal.Saveuser(User, configuration);
+
+                 logger.LogInformation($"User {User.Name} successfully saved");
+             }
+             catch (Exception ex)
+             {
+
+                 logger.LogError(ex, "error occured while processing form");
+             }
+
+             Response.Redirect("/User/List");
+
+
+
+
+
+         }*/
+
+        //model binding(binding model values with asp frameworks help)
+        public IActionResult OnPost()
         {
+            // For validation, if data is not provided, return the same page
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine($"ModelState error: {error.ErrorMessage}");
+                }
+                return Page();
+            }
+
             try
             {
-              
-                user.Name = Request.Form["Name"];
-                user.Email = Request.Form["Email"];
-                user.Phone = Convert.ToInt32(Request.Form["Phone"]);
+                // Avoid using Request.Form; let model binding handle it
+                
+                
+                /*User.Name = Request.Form["Name"];
+                User.Email = Request.Form["Email"];
+                User.Phone = Convert.ToInt32(Request.Form["Phone"]);
                 string userGender = Request.Form["Gender"];
                 if (Enum.TryParse(userGender, out Gender genderEnum))
                 {
-                    user.UserGender = genderEnum;
+                    User.UserGender = genderEnum;
                 }
+                User.City = Request.Form["City"];
+                User.State = Request.Form["State"];
+                User.Country = Request.Form["Country"];
+                User.Street = Request.Form["Street"];
+                User.PostalCode = Request.Form["PostalCode"];*/
+                
 
+                // The model binding system has already populated the User property
+                // with the values from the form fields.
 
-
-                IFormFile file = Request.Form.Files["FileContent"];
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    file.CopyTo(memoryStream);
-                    user.FileContent = memoryStream.ToArray();
-                }
-
-                user.City = Request.Form["City"];
-                user.State = Request.Form["State"];
-                user.Country = Request.Form["Country"];
-                user.Street = Request.Form["Street"];
-                user.PostalCode = Request.Form["PostalCode"];
-
-
-
-
-                //calling save method from data access layer
+                // calling save method from the data access layer
                 DataAccessLayer dal = new DataAccessLayer();
-                dal.Saveuser(user, configuration);
+                dal.Saveuser(User, configuration);
 
-                logger.LogInformation($"User {user.Name} successfully saved");
+                logger.LogInformation($"User {User.Name} successfully saved");
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "error occured while processing form");
+                logger.LogError(ex, "Error occurred while processing form");
+                // Handle the exception accordingly, e.g., return an error page
+                return RedirectToPage("/Error");
             }
 
-            Response.Redirect("/User/List");
-
+            // Use RedirectToPage instead of Response.Redirect
+            // Assuming your List page is named "List.cshtml"
+            return RedirectToPage("/User/List");
         }
+
 
 
     }
